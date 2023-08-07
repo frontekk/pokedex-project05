@@ -43,11 +43,14 @@ const getTypeComponent = (type) => {
   }
 };
 
-const PokeCard = ({ pokemon, type1, type2 }) => {
+const PokeCard = ({ pokemon, type1, type2, onClick }) => {
   const { name, id } = pokemon;
 
   return (
-    <div className="container mx-auto bg-slate-200 w-44 lg:w-64 h-60 lg:h-80 rounded-xl flex flex-col px-2 lg:px-4 py-3 mb-2">
+    <div
+      className="container mx-auto bg-slate-200 w-44 lg:w-64 h-60 lg:h-80 rounded-xl flex flex-col px-2 lg:px-4 py-3 mb-2 cursor-pointer"
+      onClick={onClick}
+    >
       {/* top icons */}
       <div className="w-full flex flex-row justify-between mx-auto">
         <div className="flex flex-row space-x-2">

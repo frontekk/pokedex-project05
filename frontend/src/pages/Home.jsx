@@ -3,9 +3,13 @@ import TopScreen from "../components/TopScreen";
 import BannerPoke from "../components/BannerPoke";
 import PokeCard from "../components/PokeCard";
 import axios from "axios";
+import IndividualPokeCard from "../components/IndividualPokeCard";
+import PokemonModal from "../components/PokemonModal";
 
 const Home = () => {
   const [pokemonData, setPokemonData] = useState([]);
+  const [selectedPokemon, setSelectedPokemon] = useState(null); // State for selected Pokemon
+  const [isModalOpen, setIsModalOpen] = useState(false); // State for modal visibility
 
   useEffect(() => {
     const fetchPokemonData = async () => {
@@ -32,6 +36,12 @@ const Home = () => {
     fetchPokemonData();
   }, []);
 
+  // Function to handle card click and open the modal
+  const handleCardClick = (pokemon) => {
+    setSelectedPokemon(pokemon);
+    setIsModalOpen(true);
+  };
+
   return (
     <div>
       <TopScreen />
@@ -45,9 +55,17 @@ const Home = () => {
                 pokemon={pokemon}
                 type1={pokemon.types[0]?.type.name}
                 type2={pokemon.types[1]?.type.name}
+                onClick={() => handleCardClick(pokemon)} // Pass onClick handler
               />
             ))}
         </div>
+        {/* <IndividualPokeCard /> */}
+        {isModalOpen && (
+          <PokemonModal
+            pokemon={selectedPokemon}
+            onClose={() => setIsModalOpen(false)} // Close modal handler
+          />
+        )}
       </div>
     </div>
   );

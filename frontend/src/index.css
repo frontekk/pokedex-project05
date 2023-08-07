@@ -32,3 +32,16 @@ body::before {
   z-index: -1;
   background-size: cover;
 } /* } END BACKGROUND */
+
+/* modal animation */
+.scale-up-center {
+  animation: scale-up-center 0.4s;
+}
+@keyframes scale-up-center {
+  0% {
+    transform: scale(0.5);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
